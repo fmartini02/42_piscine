@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 15:02:58 by francema          #+#    #+#             */
-/*   Updated: 2024/05/26 20:59:48 by francema         ###   ########.fr       */
+/*   Updated: 2024/05/26 21:06:42 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,18 +67,18 @@ int	main(int ac, char **av)
 	{
 		if (!ft_check_inputs(av[1]))
 			return (1);
-		mtx = malloc(sizeof(int*) * size);
+		mtx = malloc(sizeof(int*) * (size / 4));
 		if (!mtx)
 			ft_error();
-		while (i < size)
+		while (i < (size / 4))
 		{
-			mtx[i] = malloc(sizeof(int) * size +1);
+			mtx[i] = malloc(sizeof(int) * (size / 4));
 			if (!mtx[i])
 				ft_error();
 			i++;
 		}
 		ft_mtx_init(mtx, size);
-		ft_solve_puzzle(mtx, check, size, 0);
+		ft_solve_puzzle(mtx, check, (size / 4), 0);
 		ft_print_mat(mtx);
 	}
 }
