@@ -6,10 +6,38 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 20:32:22 by francema          #+#    #+#             */
-/*   Updated: 2024/05/26 20:34:15 by francema         ###   ########.fr       */
+/*   Updated: 2024/05/26 20:52:18 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
+#include <stdlib.h>
+
+int	ft_atoi(char *str);
+void	ft_error();
+int	ft_check_col_down(int **mtx, int pos, int *check, int size);
+int ft_check_row_right(int **mtx, int pos, int *check, int size);
+int ft_check_row_left(int **mtx, int pos, int *check, int size);
+int	ft_check_col_up(int **mtx, int pos, int *check, int size);
+
+int	ft_count_words(char *s)
+{
+	int	i;
+	int	n_w;
+
+	i = 0;
+	n_w = 0;
+	while(s[i])
+	{
+		while(s[i] && (s[i] == ' ' || (s[i] >= '\t' && s[i] <= '\r')))
+			i++;
+		while(s[i] && !(s[i] == ' ' || (s[i] >= '\t' && s[i] <= '\r')))
+			i++;
+		if (s[i])
+			n_w++;
+	}
+	return (n_w);
+}
 int	ft_check_inputs(char *s)
 {
 	int	i;
@@ -34,6 +62,7 @@ int	ft_check_inputs(char *s)
 	}
 	return (1);
 }
+
 int	*ft_set_check(char *s, int size)
 {
 	int	i;
@@ -55,24 +84,6 @@ int	*ft_set_check(char *s, int size)
 	return(tab);
 }
 
-int	ft_count_words(char *s)
-{
-	int	i;
-	int	n_w;
-
-	i = 0;
-	n_w = 0;
-	while(s[i])
-	{
-		while(s[i] && s[i] == ' ' || (s[i] >= '\t' && s[i] <= '\r'))
-			i++;
-		while(s[i] && !(s[i] == ' ' || (s[i] >= '\t' && s[i] <= '\r')))
-			i++;
-		if (s[i])
-			n_w++;
-	}
-	return (n_w);
-}
 
 void	ft_mtx_init(int **mtx, int size)
 {
@@ -92,9 +103,6 @@ void	ft_mtx_init(int **mtx, int size)
 		j = 0;
 	}
 }
-
-
-
 
 int	ft_check_case(int **mtx, int pos, int *check, int size)
 {

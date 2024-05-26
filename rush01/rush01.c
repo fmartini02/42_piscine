@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 15:02:58 by francema          #+#    #+#             */
-/*   Updated: 2024/05/26 20:33:48 by francema         ###   ########.fr       */
+/*   Updated: 2024/05/26 20:59:48 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdio.h>
+
+void	ft_error();
+void	ft_print_mat(int **mtx);
+int	ft_check_double(int **mtx, int pos, int num, int size);
+int	ft_count_words(char *s);
+int	ft_check_case(int **mtx, int pos, int *check, int size);
+int	ft_check_inputs(char *s);
+void	ft_mtx_init(int **mtx, int size);
+int	*ft_set_check(char *s, int size);
+int	ft_count_words(char *s);
+
 
 int	ft_solve_puzzle(int **mtx, int *check, int size, int pos)
 {
@@ -30,7 +41,7 @@ int	ft_solve_puzzle(int **mtx, int *check, int size, int pos)
 			mtx[pos / size][pos % size] = indx;//setting to pos value indx
 			if(ft_check_case(mtx, pos, check, size))//checking if it's a right value
 			{
-				if(ft_solve_puzzle(mtx, check, size, pos +1) == 1)
+				if(ft_solve_puzzle(mtx, check, size, pos + 1) == 1)
 					return(1);
 			}
 			else

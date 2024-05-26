@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 20:29:16 by francema          #+#    #+#             */
-/*   Updated: 2024/05/26 20:30:32 by francema         ###   ########.fr       */
+/*   Updated: 2024/05/26 20:39:53 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	ft_error()
 {
 	write(1, "Error\n", 6);
 }
+
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
@@ -47,6 +48,7 @@ int	ft_atoi(char *str)
 	}
 	return(n * sign);
 }
+
 void	ft_putnbr(int n)
 {
 	long	nb;
