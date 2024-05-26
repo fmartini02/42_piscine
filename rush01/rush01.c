@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 15:02:58 by francema          #+#    #+#             */
-/*   Updated: 2024/05/26 22:17:32 by francema         ###   ########.fr       */
+/*   Updated: 2024/05/26 22:39:18 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_error();
 void	ft_print_mat(int **mtx, int size);
 int	ft_check_double(int **mtx, int pos, int num, int size);
 int	ft_count_words(char *s);
-int	ft_check_case(int **mtx, int pos, int *check, int size);
+int	ft_check_case(int **mtx, int col, int *check);
 int	ft_check_inputs(char *s);
 void	ft_mtx_init(int **mtx, int size);
 int	*ft_set_check(char *s, int size);
@@ -34,7 +34,7 @@ int	ft_solve_puzzle(int **mtx, int *check, int row, int col)
 	int	next_col;
 
 	if (row == g_size)
-		return (ft_check_case());
+		return (ft_check_case(mtx, col, check));
 	next_row = row;
 	if (col == g_size - 1)
 		next_row = row + 1;
@@ -42,19 +42,18 @@ int	ft_solve_puzzle(int **mtx, int *check, int row, int col)
 	if (col == g_size - 1)
 		next_col = 0;
 	num = 0;
-	while(num < (g_size / 4))
+	while(num < (g_size))
 	{
 		num++;
 		if(ft_check_double(mtx, col, row, num))
 		{
-			mtx[row][col] = num;//setting to pos value indx
 			if(ft_check_case(mtx, col, check))//checking if it's a right value
 			{
-				if(ft_solve_puzzle(mtx, check, next_row, next_col) == 1)
+				mtx[row][col] = num;//setting to pos value indx
+				if(ft_solve_puzzle(mtx, check, next_row, next_col))
 					return(1);
-			}
-			else
 				mtx[row][col] = 0;
+			}
 		}
 	}
 	return (0);
@@ -62,7 +61,6 @@ int	ft_solve_puzzle(int **mtx, int *check, int row, int col)
 
 int	main(int ac, char **av)
 {
-	int	size;
 	int	i;
 	int	**mtx;
 	int	*check;
@@ -70,24 +68,24 @@ int	main(int ac, char **av)
 	i = 0;
 	if(ac == 1)
 		ft_error();
-	size = ft_count_words(av[1]) + 1;
-	check = ft_set_check(av[1], size);
+	g_size = ft_count_words(av[1]) + 1 / 4;
+	check = ft_set_check(av[1], g_size);
 	if (ac == 2)
 	{
 		if (!ft_check_inputs(av[1]))
 			return (1);
-		mtx = malloc(sizeof(int*) * (size / 4));
+		mtx = malloc(sizeof(int*) * (g_size));
 		if (!mtx)
 			ft_error();
-		while (i < (size / 4))
+		while (i < (g_size))
 		{
-			mtx[i] = malloc(sizeof(int) * (size / 4));
+			mtx[i] = malloc(sizeof(int) * (g_size));
 			if (!mtx[i])
 				ft_error();
 			i++;
 		}
-		ft_mtx_init(mtx, size);
+		ft_mtx_init(mtx, g_size);
 		ft_solve_puzzle(mtx, check, 0, 0);
-		ft_print_mat(mtx, size);
+		ft_print_mat(mtx, g_size);
 	}
 }

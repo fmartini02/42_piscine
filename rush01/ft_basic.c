@@ -5,12 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/26 20:29:16 by francema          #+#    #+#             */
-/*   Updated: 2024/05/26 22:11:26 by francema         ###   ########.fr       */
+/*   Created: 2024/05/26 22:30:08 by francema          #+#    #+#             */
+/*   Updated: 2024/05/26 22:30:45 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+
+extern	int	g_size;
 
 void	ft_error(void)
 {
@@ -68,16 +70,16 @@ void	ft_putnbr(int n)
 		ft_putchar(nb + 48);
 }
 
-void	ft_print_mat(int **mtx, int size)
+void	ft_print_mat(int **mtx)
 {
 	int	j;
 	int	i;
 
 	j = 0;
 	i = 0;
-	while (j < (size / 4))
+	while (j < (g_size / 4))
 	{
-		while (i < (size / 4))
+		while (i < (g_size / 4))
 		{
 			ft_putnbr(mtx[j][i]);
 			i++;
