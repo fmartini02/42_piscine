@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 20:30:54 by francema          #+#    #+#             */
-/*   Updated: 2024/05/26 22:32:35 by francema         ###   ########.fr       */
+/*   Updated: 2024/05/26 23:09:40 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,119 +19,93 @@ int	ft_check_double(int **mtx, int row, int col, int num)
 	i = 0;
 	while (i < g_size)
 	{
-		if(mtx[row][i] == num || mtx[i][col])
+		if (mtx[row][i] == num || mtx[i][col])
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-int	ft_check_col_down(int **mtx, int pos, int *check)
+int	ft_check_row_left(int *row, int clue)
 {
+	int	max_seen;
+	int	seen_count;
 	int	i;
-	int	max;
-	int	count;
-	int	i_check;
 
-	i = g_size -1;
-	max = 0;
-	count = 0;
-	i_check = g_size;
-	if (pos / (g_size) == (g_size -1))
+	max_seen = 0;
+	seen_count = 0;
+	i = 0;
+	while (i < g_size)
 	{
-		while (i >= 0)
+		if (row[i] > max_seen)
 		{
-			if (mtx[i][pos % (g_size)] > max)
-			{
-				max = mtx[i][pos % (g_size)];
-				count++;
-			}
-			i--;
+			max_seen = row[i];
+			seen_count++;
 		}
-		if (check[i_check + pos % (g_size)] != count)
-			return (0);
+		i++;
 	}
-	return (1);
+	return (seen_count == clue);
 }
 
-int	ft_check_row_right(int **mtx, int pos, int *check)
+int	ft_check_row_right(int *row, int clue)
 {
+	int	max_seen;
+	int	seen_count;
 	int	i;
-	int	max_size;
-	int	visible_towers;
-	int	i_check;
 
+	max_seen = 0;
+	seen_count = 0;
 	i = g_size - 1;
-	max_size = 0;
-	i_check = (g_size) * 3;
-	visible_towers = 0;
-	if (pos % (g_size) == (g_size) - 1)
+	while (i >= 0)
 	{
-		while (i >= 0)
+		if (row[i] > max_seen)
 		{
-			if (mtx[pos / (g_size)][i] > max_size)
-			{
-				max_size = mtx[pos / (g_size)][i];
-				visible_towers++;
-			}
-			i--;
+			max_seen = row[i];
+			seen_count++;
 		}
-		if (check[i_check + pos / (g_size)] != visible_towers)
-			return (0);
+		i--;
 	}
-	return (1);
+	return (seen_count == clue);
 }
 
-int	ft_check_row_left(int **mtx, int pos, int *check)
+int	ft_check_col_up(int **matrix, int col, int clue)
 {
+	int	max_seen;
+	int	seen_count;
 	int	i;
-	int	max_size;
-	int	visible_towers;
-	int	i_check;
 
+	max_seen = 0;
+	seen_count = 0;
 	i = 0;
-	max_size = 0;
-	visible_towers = 0;
-	i_check = (g_size) * 2;
-	if (pos % (g_size) == (g_size - 1))
+	while (i < g_size)
 	{
-		while (i < (g_size))
+		if (matrix[i][col] > max_seen)
 		{
-			if (mtx[pos / (g_size)][i] > max_size)
-			{
-				max_size = mtx[pos / (g_size)][i];
-				visible_towers++;
-			}
-			i++;
+			max_seen = matrix[i][col];
+			seen_count++;
 		}
-		if (check[i_check + pos / (g_size)] != visible_towers)
-			return (0);
+		i++;
 	}
-	return (1);
+	return (seen_count == clue);
 }
 
-int	ft_check_col_up(int **mtx, int pos, int *check)
+int	ft_check_col_down(int **matrix, int col, int clue)
 {
+	int	max_seen;
+	int	seen_count;
 	int	i;
-	int	max;
-	int	count;
 
-	i = 0;
-	max = 0;
-	count = 0;
-	if (pos / (g_size) == (g_size) - 1)
+	max_seen = 0;
+	seen_count = 0;
+	i = g_size - 1;
+	while (i >= 0)
 	{
-		while (i >= 0)
+		if (matrix[i][col] > max_seen)
 		{
-			if (mtx[i][pos % (g_size)] > max)
-			{
-				max = mtx[i][pos % (g_size)];
-				count++;
-			}
-			i++;
+			max_seen = matrix[i][col];
+			seen_count++;
 		}
-		if (check[pos % (g_size)] != count)
-			return (0);
+		i--;
 	}
-	return (1);
+	return (seen_count == clue);
 }

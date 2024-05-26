@@ -6,13 +6,13 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 22:30:08 by francema          #+#    #+#             */
-/*   Updated: 2024/05/26 22:30:45 by francema         ###   ########.fr       */
+/*   Updated: 2024/05/26 23:07:31 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-extern	int	g_size;
+extern int	g_size;
 
 void	ft_error(void)
 {

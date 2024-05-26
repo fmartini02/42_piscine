@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 20:32:22 by francema          #+#    #+#             */
-/*   Updated: 2024/05/26 22:31:08 by francema         ###   ########.fr       */
+/*   Updated: 2024/05/26 23:07:06 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #include <stdlib.h>
 
 int		ft_atoi(char *str);
-int		ft_check_col_down(int **mtx, int pos, int *check);
-int		ft_check_row_right(int **mtx, int pos, int *check);
-int		ft_check_row_left(int **mtx, int pos, int *check);
-int		ft_check_col_up(int **mtx, int pos, int *check);
+int		ft_check_col_down(int **mtx, int i, int *check);
+int		ft_check_row_right(int **mtx, int *check);
+int		ft_check_row_left(int **mtx, int *check);
+int		ft_check_col_up(int **mtx, int i, int *check);
 void	ft_error(void);
-extern	int	g_size;
+extern int	g_size;
 
 int	ft_count_words(char *s)
 {
@@ -106,20 +106,20 @@ void	ft_mtx_init(int **mtx)
 	}
 }
 
-int	ft_check_case(int **mtx, int pos, int *check)
+int	ft_check_case(int **mtx, int *check)
 {
 	int	i;
 
 	i = 0;
 	while (i < g_size)
 	{
-		if (!ft_check_row_left(mtx, pos, check))
+		if (!ft_check_row_left(&mtx[i], &check[(g_size * 2) + i]))
 			return (0);
-		if (!ft_check_row_right(mtx, pos, check))
+		if (!ft_check_row_right(&mtx[i], &check[(g_size * 3) + i]))
 			return (0);
-		if (!ft_check_col_down(mtx, pos, check))
+		if (!ft_check_col_down(mtx, i, &check[i]))
 			return (0);
-		if (!ft_check_col_up(mtx, pos, check))
+		if (!ft_check_col_up(mtx, i, &check[i]))
 			return (0);
 		i++;
 	}
