@@ -6,13 +6,13 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 20:29:16 by francema          #+#    #+#             */
-/*   Updated: 2024/05/26 20:39:53 by francema         ###   ########.fr       */
+/*   Updated: 2024/05/26 22:11:26 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_error()
+void	ft_error(void)
 {
 	write(1, "Error\n", 6);
 }
@@ -46,7 +46,7 @@ int	ft_atoi(char *str)
 		n = (n * 10) + (str[i] - '0');
 		i++;
 	}
-	return(n * sign);
+	return (n * sign);
 }
 
 void	ft_putnbr(int n)
@@ -68,16 +68,16 @@ void	ft_putnbr(int n)
 		ft_putchar(nb + 48);
 }
 
-void	ft_print_mat(int **mtx)
+void	ft_print_mat(int **mtx, int size)
 {
 	int	j;
 	int	i;
 
 	j = 0;
 	i = 0;
-	while (mtx[j])
+	while (j < (size / 4))
 	{
-		while(mtx[j][i])
+		while (i < (size / 4))
 		{
 			ft_putnbr(mtx[j][i]);
 			i++;
