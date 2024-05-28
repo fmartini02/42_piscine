@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:09:11 by francema          #+#    #+#             */
-/*   Updated: 2024/05/22 12:50:55 by francema         ###   ########.fr       */
+/*   Updated: 2024/05/27 14:56:28 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,16 @@ void	ft_print_esa(char c)
 
 	ciphers = "0123456789abcdef";
 	ft_putchar('\\');
-	ft_putchar(ciphers[c / 16]);
-	ft_putchar(ciphers[c % 16]);
+	if (c / 16 > 0)
+	{
+		ft_putchar(ciphers[c % 16]);
+		ft_putchar(ciphers[c / 16]);
+	}
+	else
+	{
+		ft_putchar('0');
+		ft_putchar(ciphers[c]);
+	}
 }
 
 void	ft_putstr_non_printable(char *str)
@@ -44,11 +52,11 @@ void	ft_putstr_non_printable(char *str)
 /*
 int	main()
 {
-	char	*str = "ciao \001 SOH \002 STX \003 ETX \004 EOT 
-		\005 ENQ \006 ACK \007 BEL \010 BS \011 HT  \012 
-		LF \013 VT \014 FF \015 CR \016 SO \017 SI \020 
-		DLE \021 DC1 \022 DC2 \023 DC3 \024 DC4 \025 NAK 
-		\026 SYN \027 ETB \030 CAN \031 EM \032 SUB \033 
+	char	*str = "ciao \001 SOH \002 STX \003 ETX \004 EOT
+		\005 ENQ \006 ACK \007 BEL \010 BS \011 HT  \012
+		LF \013 VT \014 FF \015 CR \016 SO \017 SI \020
+		DLE \021 DC1 \022 DC2 \023 DC3 \024 DC4 \025 NAK
+		\026 SYN \027 ETB \030 CAN \031 EM \032 SUB \033
 		ESC \034 FS \035 GS \036 RS \037 US \177 DEL";
 	ft_putstr_non_printable(str);
 }*/

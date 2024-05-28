@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:41:15 by francema          #+#    #+#             */
-/*   Updated: 2024/05/22 18:55:12 by francema         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:25:28 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,22 @@ int	ft_strlen(char *str)
 void	ft_putbnbr_base(int nbr, char *base)
 {
 	int	b;
-	
+
 	b = ft_strlen(base);
-	if (nb == -2147483648)
+	if (nbr == -2147483648)
 	{
 		write(1, "-2", 2);
-		nb = 147483648;
+		nbr = 147483648;
 	}
-	else if (nb < 0)
+	else if (nbr < 0)
 	{
 		write(1, "-", 1);
-		nb *= -1;
+		nbr *= -1;
 	}
-	else if (nb >= b)
+	else if (nbr >= b)
 	{
-		ft_putnbr_base(nb / b);
-		ft_putnbr_base(nb % b);
+		ft_putnbr_base(nbr / b);
+		ft_putnbr_base(nbr % b);
 	}
-	write(1, base[nb], 1);
+	write(1, base[nbr], 1);
 }

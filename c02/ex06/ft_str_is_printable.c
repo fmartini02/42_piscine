@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:22:13 by francema          #+#    #+#             */
-/*   Updated: 2024/05/22 12:44:44 by francema         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:34:47 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,18 @@
 int	ft_str_is_printable(char *str)
 {
 	int	ret;
+	int	i;
 
 	ret = 0;
-	while (*str)
+	i = 0;
+	while (str[i])
 	{
-		if ((*str >= 9 && *str <= 11) || (*str >= 32 && *str <= 126))
-			str++;
+		if (str[i] >= ' ' && str[i] <= '~')
+			i++;
 		else
 			break ;
 	}
-	if (!*str)
+	if (!str[i])
 		ret = 1;
 	return (ret);
 }

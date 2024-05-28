@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:59:23 by francema          #+#    #+#             */
-/*   Updated: 2024/05/22 12:48:27 by francema         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:46:16 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,14 @@ char	*ft_strcapitalize(char *str)
 		while (str[i] && (str[i] == ' ' || str[i] == '\t'))
 			i++;
 		if (str[i] >= 'a' && str[i] <= 'z')
-			str[i] = str[i] - 32;
+			str[i++] -= 32;
 		while (ft_is_num(str[i]) || ft_is_low(str[i]) || ft_is_up(str[i]))
+		{
+			if (ft_is_up(str[i]))
+				str[i] +=32;
 			i++;
-		while (str[i] && !ft_is_num(str[i])
-			&& !ft_is_low(str[i]) && !ft_is_up(str[i]))
+		}
+		while (str[i] && !ft_is_num(str[i]) && !ft_is_low(str[i]) && !ft_is_up(str[i]))
 			i++;
 	}
 	return (str);
@@ -66,8 +69,8 @@ char	*ft_strcapitalize(char *str)
 /*
 int main() {
     char *s0 = strdup("c'i,a,o");
-    char *s1 = strdup("salut, comment tu vas ? 
-    	42mots quarante-deux; cinquante+et+un");
+    char *s1 = strdup("salut, comment tu vas ? 4
+	2mots quarante-deux; cinquante+et+un");
     char *s2 = strdup(" c i a o ");
     char *s3 = strdup(" Ci ao");
     char *s4 = strdup(" (i 4o");
