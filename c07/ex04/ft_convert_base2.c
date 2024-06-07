@@ -9,7 +9,7 @@
 /*   Updated: 2024/06/03 19:13:23 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+/*
 int	ft_strlen(char *s)
 {
 	int	len;
@@ -81,4 +81,4 @@ char	ft_get_sign(char *nbr)
 		return ('+');
 	else
 		return ('-');
-}
+}*/

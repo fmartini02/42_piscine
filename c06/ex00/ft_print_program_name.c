@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 17:02:14 by francema          #+#    #+#             */
-/*   Updated: 2024/05/27 17:05:27 by francema         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:42:23 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,8 @@ void	ft_putstr(char *str)
 	int	i;
 
 	i = 0;
-	while(*str)
-	{
-		write(1, str, 1);
-		str++;
-	}
+	while (str[i])
+		write(1, &str[i++], 1);
 }
 
 int	main(int ac, char **av)

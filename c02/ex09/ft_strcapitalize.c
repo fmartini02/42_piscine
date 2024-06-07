@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:59:23 by francema          #+#    #+#             */
-/*   Updated: 2024/05/27 15:46:16 by francema         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:48:27 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,63 +14,59 @@
 #include <stdlib.h>
 #include <string.h>
 
-int	ft_is_up(char str)
+int	is_alpha(char c)
 {
-	int	ret;
-
-	ret = 0;
-	if (str >= 'A' && str <= 'Z')
-		return (1);
-	return (ret);
+	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }
 
-int	ft_is_low(char str)
+int	is_numeric(char c)
 {
-	int	ret;
-
-	ret = 0;
-	if (str >= 'a' && str <= 'z')
-		return (1);
-	return (ret);
+	return (c >= '0' && c <= '9');
 }
 
-int	ft_is_num(char str)
+char	to_upper(char c)
 {
-	int	ret;
+	if (c >= 'a' && c <= 'z')
+		return (c - 32);
+	return (c);
+}
 
-	ret = 0;
-	if (str >= '0' && str <= '9')
-		return (1);
-	return (ret);
+char	to_lower(char c)
+{
+	if (c >= 'A' && c <= 'Z')
+		return (c + 32);
+	return (c);
 }
 
 char	*ft_strcapitalize(char *str)
 {
 	int	i;
+	int	flag;
 
 	i = 0;
+	flag = 1;
 	while (str[i])
 	{
-		while (str[i] && (str[i] == ' ' || str[i] == '\t'))
-			i++;
-		if (str[i] >= 'a' && str[i] <= 'z')
-			str[i++] -= 32;
-		while (ft_is_num(str[i]) || ft_is_low(str[i]) || ft_is_up(str[i]))
+		if (flag == 1 && is_alpha(str[i]))
 		{
-			if (ft_is_up(str[i]))
-				str[i] +=32;
-			i++;
+			str[i] = to_upper(str[i]);
+			flag = 0;
 		}
-		while (str[i] && !ft_is_num(str[i]) && !ft_is_low(str[i]) && !ft_is_up(str[i]))
-			i++;
+		else if (flag == 0 && is_alpha(str[i]))
+			str[i] = to_lower(str[i]);
+		else if (is_numeric(str[i]))
+			flag = 0;
+		else
+			flag = 1;
+		i++;
 	}
 	return (str);
 }
 /*
 int main() {
     char *s0 = strdup("c'i,a,o");
-    char *s1 = strdup("salut, comment tu vas ? 4
-	2mots quarante-deux; cinquante+et+un");
+    char *s1 = strdup("salut, comMeEnt tu vas ? 42mots 
+    quarante-deux; cinquante+et+un");
     char *s2 = strdup(" c i a o ");
     char *s3 = strdup(" Ci ao");
     char *s4 = strdup(" (i 4o");

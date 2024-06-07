@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_fibonacci.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 16:04:50 by francema          #+#    #+#             */
-/*   Updated: 2024/05/29 15:24:20 by francema         ###   ########.fr       */
+/*   Created: 2024/05/28 14:45:38 by francema          #+#    #+#             */
+/*   Updated: 2024/05/28 15:01:45 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <stdlib.h>
 
-int	ft_sqrt_rec(int nb, int i)
+int	ft_fibonacci(int index)
 {
-	if (nb > 2147395600)
-		return (0);
-	if (i * i == nb)
-		return (i);
-	if (i * i < nb)
-		return (ft_sqrt_rec(nb, i + 1));
-	return (0);
-}
-
-int	ft_sqrt(int nb)
-{
-	return (ft_sqrt_rec(nb, 0));
+	if (index < 0)
+		return (-1);
+	else if (index == 0)
+		return(0);
+	else if (index == 1 || index == 2)
+		return (1);
+	else
+		return (ft_fibonacci(index - 1) + ft_fibonacci(index - 2));
 }
 /*
-int	main()
+int	main(int ac, char **av)
 {
-	printf("%d\n", ft_sqrt());
+	(void)ac;
+	printf("%d", ft_fibonacci(atoi(av[1])));
 }*/

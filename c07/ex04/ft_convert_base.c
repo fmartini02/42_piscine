@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 
-int		ft_check_base(char *base)
+/*int		ft_check_base(char *base)
 {
 	int	i;
 	int	j;
@@ -89,4 +89,4 @@ char *ft_convert_base(char *nbr, char *base_from, char *base_to)
 	if (!res)
 		return ((char *) 0);
 	res = ft_base_ten_2_base_to(res, base_to);
-}
+}*/

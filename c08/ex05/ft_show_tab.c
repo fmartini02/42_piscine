@@ -1,39 +1,65 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_show_tab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 16:58:57 by francema          #+#    #+#             */
-/*   Updated: 2024/05/22 17:03:19 by francema         ###   ########.fr       */
+/*   Created: 2024/06/05 15:38:04 by francema          #+#    #+#             */
+/*   Updated: 2024/06/05 15:49:31 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "ft_stock_str.h"
 
 void	ft_putnbr(int nbr)
 {
 	char	c;
 
-	if (nbr == -2147483648)
+	if (nb == -2147483648)
 	{
 		write(1, "-2", 2);
-		nbr = 147483648;
+		nb = 147483648;
 	}
-	else if (nbr < 0)
+	else if (nb < 0)
 	{
 		write(1, "-", 1);
-		nbr *= -1;
+		nb *= -1;
 	}
-	if (nbr >= 10)
+	if (nb >= 10)
 	{
-		ft_putnbr(nbr / 10);
-		ft_putnbr(nbr % 10);
+		ft_putnbr(nb / 10);
+		ft_putnbr(nb % 10);
 	}
 	else
 	{
-		c = nbr + '0';
+		c = nb + '0';
 		write(1, &c, 1);
+	}
+}
+
+void	ft_putstr(char *str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+		write(1, &str[i], 1);
+}
+
+void	ft_show_tab(struct s_stock_str *par)
+{
+	int	i;
+
+	i = 0;
+	while (par[i].str)
+	{
+		ft_putstr(par[i].str);
+		write(1, "\n", 1);
+		ft_putnbr(par[i].size);
+		write(1, "\n", 1);
+		ft_putstr(par[i].copy);
+		write(1, "\n", 1);
+		i++;
 	}
 }

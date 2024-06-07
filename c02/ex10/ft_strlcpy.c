@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 16:59:12 by francema          #+#    #+#             */
-/*   Updated: 2024/05/27 15:50:08 by francema         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:49:09 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,20 @@
 unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 {
 	unsigned int	i;
+	unsigned int	src_len;
 
 	i = 0;
-	while (src[i] && i < size - 1)
+	src_len = 0;
+	while (src[src_len])
+		src_len++;
+	if (size > 0)
 	{
-		dest[i] = src[i];
-		i++;
+		while (src[i] && i < size -1)
+		{
+			dest[i] = src[i];
+			i++;
+		}
+		dest[i] = '\0';
 	}
-	dest[i] = '\0';
-	return (i);
+	return (src_len);
 }
-/*int main() {
-    char dest[20];
-    char *src = "Hello, World!";
-
-    unsigned int length = ft_strlcpy(dest, src, 20);
-
-    printf("Copied string: '%s'\n", dest); // Output: "Hello, World!"
-    printf("Length of copied string: %u\n", length); // Output: 13
-
-    return 0;
-}*/

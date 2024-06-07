@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 17:46:23 by francema          #+#    #+#             */
-/*   Updated: 2024/05/27 18:47:57 by francema         ###   ########.fr       */
+/*   Updated: 2024/06/06 15:42:54 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ size_t	ft_strlen(char *s)
 	int	i;
 
 	i = 0;
-	while(s[i])
+	while (s[i])
 		i++;
-	return(0);
+	return (i);
 }
 
 char	*ft_strdup(char *str)
@@ -32,7 +32,7 @@ char	*ft_strdup(char *str)
 	dup = malloc (sizeof(char) * size + 1);
 	i = 0;
 	if (!dup)
-		return(NULL);
+		return (NULL);
 	while (str[i])
 	{
 		dup[i] = str[i];

@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_point.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 16:04:50 by francema          #+#    #+#             */
-/*   Updated: 2024/05/29 15:24:20 by francema         ###   ########.fr       */
+/*   Created: 2024/06/05 14:31:53 by francema          #+#    #+#             */
+/*   Updated: 2024/06/05 14:35:16 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#ifndef FT_POINT_H
+# define FT_POINT_H
 
-int	ft_sqrt_rec(int nb, int i)
+typedef struct s_point
 {
-	if (nb > 2147395600)
-		return (0);
-	if (i * i == nb)
-		return (i);
-	if (i * i < nb)
-		return (ft_sqrt_rec(nb, i + 1));
-	return (0);
-}
+	int	x;
+	int	y;
+}	t_point;
 
-int	ft_sqrt(int nb)
-{
-	return (ft_sqrt_rec(nb, 0));
-}
-/*
-int	main()
-{
-	printf("%d\n", ft_sqrt());
-}*/
+#endif

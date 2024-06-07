@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:59:45 by francema          #+#    #+#             */
-/*   Updated: 2024/05/27 16:02:57 by francema         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:21:18 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_iterative_power(int nb, int power)
 
 	result = 0;
 	if (power == 0)
-		return(result + 1);
+		return (result + 1);
 	else if (nb == 0)
 		return (result);
 	else if (power < 0)

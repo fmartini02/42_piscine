@@ -5,94 +5,48 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/03 15:43:24 by francema          #+#    #+#             */
-/*   Updated: 2024/06/03 15:55:21 by francema         ###   ########.fr       */
+/*   Created: 2024/05/29 15:53:00 by francema          #+#    #+#             */
+/*   Updated: 2024/06/06 15:42:21 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 int	*ft_range(int min, int max)
 {
-	int	*range;
+	int	tmp;
 	int	i;
+	int	len;
+	int	*range;
+	int	*og;
 
-	i = 0;
 	if (min >= max)
-		return((int *) 0);
-	range = malloc(sizeof(int) * (max - min));
-	if (!range)
-		return((int *) 0);
-	while (min < max)
-		range[i++] = min++;
+		return (NULL);
+	tmp = min;
+	len = 0;
+	while (tmp < max)
+	{
+		len++;
+		tmp++;
+	}
+	range = malloc(sizeof(int) * len);
+	i = 0;
+	tmp = min;
+	og = range;
+	while (i < len)
+		range[i++] = tmp++;
 	return (range);
 }
 /*
-int main() {
-	int *range;
-	int min, max, i;
-
-	// Test Case 1: Normal range
-	min = 1;
-	max = 5;
-	range = ft_range(min, max);
-	if (range) {
-		printf("Range from %d to %d: ", min, max);
-		for (i = 0; i < max - min; i++) {
-			printf("%d ", range[i]);
-		}
-		free(range);
-		printf("\n");
-	} else {
-		printf("Range from %d to %d: NULL\n", min, max);
+int	main(int ac, char **av)
+{
+	(void)ac;
+	int	*arr = ft_range(atoi(av[1]), atoi(av[2]));
+	int	i = 0;
+	while(arr[i])
+	{
+		printf("%d\n",arr[i]);
+		i++;
 	}
-
-	// Test Case 2: min == max
-	min = 5;
-	max = 5;
-	range = ft_range(min, max);
-	if (range) {
-		printf("Range from %d to %d: ", min, max);
-		for (i = 0; i < max - min; i++) {
-			printf("%d ", range[i]);
-		}
-		free(range);
-		printf("\n");
-	} else {
-		printf("Range from %d to %d: NULL\n", min, max);
-	}
-
-	// Test Case 3: min > max
-	min = 10;
-	max = 5;
-	range = ft_range(min, max);
-	if (range) {
-		printf("Range from %d to %d: ", min, max);
-		for (i = 0; i < max - min; i++) {
-			printf("%d ", range[i]);
-		}
-		free(range);
-		printf("\n");
-	} else {
-		printf("Range from %d to %d: NULL\n", min, max);
-	}
-
-	// Test Case 4: Large range
-	min = -5;
-	max = 5;
-	range = ft_range(min, max);
-	if (range) {
-		printf("Range from %d to %d: ", min, max);
-		for (i = 0; i < max - min; i++) {
-			printf("%d ", range[i]);
-		}
-		free(range);
-		printf("\n");
-	} else {
-		printf("Range from %d to %d: NULL\n", min, max);
-	}
-
-	return 0;
-}
-*/
+}*/

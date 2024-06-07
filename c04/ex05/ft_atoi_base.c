@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:50:55 by francema          #+#    #+#             */
-/*   Updated: 2024/05/23 16:01:56 by francema         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:04:16 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_is_in_base(char c, char *base)
 
 	i = 0;
 	r = 0;
-	while(base[i])
+	while (base[i])
 	{
 		if (base[i] == c)
 			r = 1;
@@ -46,7 +46,7 @@ int	ft_set_indx_and_sign(char *str, int *i)
 	return (sign);
 }
 
-int		ft_check_base(char *base)
+int	ft_check_base(char *base)
 {
 	int	i;
 	int	j;
@@ -56,11 +56,11 @@ int		ft_check_base(char *base)
 	r = 0;
 	while (base[i] && !r)
 	{
-		if ((base[i] == '-' || base[i] == '+' )|| ((base[i] >= 1
-			&& base[i] <= 32) || base[i] == 127))
-			r = 2;
+		if ((base[i] == '-' || base[i] == '+' )
+			|| ((base[i] >= 1 && base[i] <= 32) || base[i] == 127))
+			r = 1;
 		j = i + 1;
-		while (base[j])
+		while (base[j] && !r)
 		{
 			if (base[i] == base[j])
 				r = 1;
@@ -88,13 +88,15 @@ int	ft_atoi_base(char *str, char *base)
 	int	base_len;
 	int	sign;
 
-	res = 0;
-	i = 0;
-	if (ft_check_base(base))
-		return (1);
-	base_len = 0;
 	while (base[base_len])
 		base_len++;
+	if (base_len < 2)
+		return (0);
+	if (ft_check_base(base))
+		return (1);
+	res = 0;
+	i = 0;
+	base_len = 0;
 	if (base_len < 2)
 		return (2);
 	sign = ft_set_indx_and_sign(str, &i);

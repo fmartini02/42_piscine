@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 16:38:40 by francema          #+#    #+#             */
-/*   Updated: 2024/05/27 16:55:02 by francema         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:21:30 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ int	ft_find_next_prime(int nb)
 	int	test;
 
 	test = nb;
-	if (test <= 2)
-		return(2);
 	while (!ft_is_prime(test))
 		test++;
 	return (test);
